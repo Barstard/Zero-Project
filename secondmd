@@ -1,0 +1,280 @@
+#image bg room = "#"
+#스테이터스 꾸미기
+init python:
+    style.states_btn = Style("text_button")
+    #style.states_btn.size = 28              # 글자 크기
+    style.states_btn.color = "#FFFFFF"      # 글자 색 (흰색)
+    #style.states_btn.background = "#444444"  # 버튼 배경 색 (회색)
+    #style.states_btn.hover_background = "#c9c8d3"  # 마우스 올렸을 때 배경
+    style.states_btn.selected_background = "#921414"  # 선택 상태 배경
+    style.states_btn.insensitive_color = "#888888"  # 비활성화 텍스트 색
+    style.states_btn.padding = (15, 10)    # 상하좌우 여백 (좌우, 상하)
+    style.states_btn.xminimum = 200        # 버튼 최소 너비
+    style.states_btn.yminimum = 50         # 버튼 최소 높이
+    style.states_btn.outlines = [(2, "#000000", 0, 0)]  # 글자 테두리 (두께, 색깔, xoffset, yoffset)
+
+
+
+# 남주방 ui
+screen test_ui():
+    frame:
+        xalign 1.0
+        yalign 0.0
+        xoffset -100   # 오른쪽에서 픽셀 왼쪽으로 당기기
+        padding (5, 10)
+        background "#03020f"    # 배경 제거
+        
+        has vbox
+
+        text "스테이터스:"
+        text "소지금:" style "states_btn"
+        text "매력수치:"   style "states_btn"
+        text "피로도:"   style "states_btn"
+    frame:
+        xalign 1.0
+        yalign 1.0
+        yoffset -100
+        xoffset -100  # 오른쪽에서 픽셀 왼쪽으로 당기
+        background None     # 배경 제거
+        #text_size 0
+
+        has vbox
+
+        
+        textbutton "일정표" action Jump("story") 
+           
+    frame:
+
+        xalign 0.5
+        yalign 0.5
+        xmaximum 300    # 버튼 너비
+        ymaximum 100    # 버튼 높이
+        padding (5, 10)
+        background None  # 배경 제거
+        has vbox
+
+        textbutton "컴퓨터" action Jump("computer")
+
+#컴퓨터 클릭
+screen computer_ui():
+    frame:
+        xalign 0.5
+        yalign 0.5
+        xmaximum 300    # 버튼 너비
+        ymaximum 100    # 버튼 높이
+        padding (5, 10)
+        background None     # 배경 제거
+        
+        has vbox
+
+        textbutton "알바하기" action Jump("job")
+
+        textbutton "쇼핑하기" action Jump("shopping")
+
+        textbutton "미니게임들" action Jump("minigame")
+
+        textbutton "돌아가기" action Jump("start")
+
+#알바하기 버튼 클릭시 팝업창
+screen job_ui():
+   
+
+    frame:
+        xalign 0.5
+        yalign 0.5
+        xmaximum 300    # 버튼 너비
+        ymaximum 100    # 버튼 높이
+        padding (5, 10)
+        background None     # 배경 제거
+
+        has vbox
+        textbutton "카페 알바" action Jump("cafe")
+        textbutton "편의점 알바" action Jump("mart")
+        textbutton "닫기" action Jump("computer")
+
+#카페알바 스크린
+screen cafe_ui():
+    frame:
+        xalign 0.5
+        yalign 0.5
+        xmaximum 300    # 버튼 너비
+        ymaximum 100    # 버튼 높이
+        
+        padding (5, 10)
+        
+        background None     # 배경 제거
+        text "카페 인터페이스 알바로 번 돈 보여주기":
+            xalign 0.5
+            yalign 0.5
+            size 30
+            color "#FFFFFF"
+#마트 스크린
+screen  mart_ui():
+    frame:
+        xalign 0.5
+        yalign 0.5
+        xmaximum 300    # 버튼 너비
+        ymaximum 100    # 버튼 높이
+        
+        padding (5, 10)
+        
+        background None     # 배경 제거
+        text "편의점 인터페이스 알바로 번 돈 보여주기":
+            xalign 0.5
+            yalign 0.5
+            size 30
+            color "#FFFFFF"
+
+
+#쇼핑하기 버튼 클릭시 팝업창
+screen shopping_ui():
+      
+    frame:
+        background "#222D"
+        padding 20
+        xalign 0.5
+        yalign 0.5
+        
+        has vbox
+              
+        textbutton "1번 옷" action  Jump("firstclothes")
+        textbutton "2번 옷" action Jump("econdclothes")
+        textbutton "닫기" action Hide("shopping_ui")
+
+screen  firstclothes_ui():
+    frame:
+        xalign 0.5
+        yalign 0.5
+        xmaximum 300    # 버튼 너비
+        ymaximum 100    # 버튼 높이
+        
+        padding (5, 10)
+        
+        background None     # 배경 제거
+        text "옷, 가격, 매력수치, 등등 인터페이스 보여주기":
+            xalign 0.5
+            yalign 0.5
+            size 30
+            color "#FFFFFF"
+            
+screen  secondclothes_ui():
+    frame:
+        xalign 0.5
+        yalign 0.5
+        xmaximum 300    # 버튼 너비
+        ymaximum 100    # 버튼 높이
+        
+        padding (5, 10)
+        
+        background None     # 배경 제거
+        text "옷, 가격, 매력수치, 등등 인터페이스 보여주기":
+            xalign 0.5
+            yalign 0.5
+            size 30
+            color "#FFFFFF"
+
+#미니게임 버튼 클릭시 팝업창
+screen minigame_ui():
+    frame:
+        background "#222D"
+        padding 20
+        xalign 0.5
+        yalign 0.5
+
+        has vbox
+
+        textbutton "1번게임" 
+
+        textbutton "2번게임" 
+
+        textbutton "3번게임" 
+
+        textbutton "돌아가기" action Hide("minigame_ui")
+
+
+#일정표 클릭시 보이는 화면
+screen story_ui():
+    frame:
+        xalign 0.5
+        yalign 0.5
+        xmaximum 300    # 버튼 너비
+        ymaximum 100    # 버튼 높이
+        
+        padding (5, 10)
+        
+        background None     # 배경 제거
+        
+        has vbox
+        textbutton "메인스토리" action Jump("main_story")
+        textbutton "서브스토리" action Jump("sub_story")
+
+
+
+
+
+        
+label start:
+    call screen test_ui
+    call screen story_ui
+     
+    with Pause()
+    
+    return
+
+label computer:
+    call screen computer_ui
+
+    return
+
+label job:
+
+    call screen job_ui
+
+    return
+
+label cafe:
+    call screen cafe_ui
+    
+    return
+
+label mart:
+    call screen mart_ui
+    
+    return
+
+label shopping:
+    call screen shopping_ui
+
+    return
+
+label firstclothes:
+    call screen firstclothes_ui
+    
+    return
+
+label secondclothes:
+    call screen secondclothes_ui
+    
+    return
+
+label minigame:
+    call screen minigame_ui
+
+    return
+
+label main_story:
+    "메인스토리 화면"
+
+    return
+
+label sub_story:
+    "서브 스토리 화면"
+
+    return
+
+label story:
+    call screen story_ui
+
+    return
+
+
